@@ -13,13 +13,13 @@ def readdata:
   df.show()
   df.printSchema()
   
-  # Loading DataFrames: CSV method 1
+  # Loading DataFrames: CSV method 1 using spark.read.csv('path')
   player_df =spark.read.option('header', True).csv('gs://dataproc-staging-us-east1-548550014762-rie5an4z/notebooks/jupyter/player.csv')
   player_df.show(5, False)
   display(player_df)
   player_df.printSchema()
   
-  # Loading DataFrames: CSV method 2
+  # Loading DataFrames: CSV method 2 using spark.read.format('csv').load('path')
   player_df = spark.read.format("csv").load('gs://dataproc-staging-us-east1-548550014762-rie5an4z/notebooks/jupyter/player.csv')
   player_df.show(5, False)
   display(player_df)
