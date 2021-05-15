@@ -1,7 +1,7 @@
 """
 Shows a simple application being executed in spark without a session
 Run with spark2-submit simple_with_session.py
-Auther- Andy
+Author- Andy
 """
 from pyspark.sql import SparkSession
 
