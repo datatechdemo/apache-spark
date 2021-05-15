@@ -14,52 +14,42 @@ def readdata:
   df.printSchema()
   
   # Loading DataFrames: CSV method 1
-  csv_df =spark.read.csv('/user/cloudera/stackexchange/posts_all_csv')
-  csv_df.show(5, False)
-  display(csv_df)
-  csv_df.printSchema()
+  player_df =spark.read.option('header', True).csv('gs://dataproc-staging-us-east1-548550014762-rie5an4z/notebooks/jupyter/player.csv')
+  player_df.show(5, False)
+  display(player_df)
+  player_df.printSchema()
   
   # Loading DataFrames: CSV method 2
-  csv_df2 = spark.read.format("csv").load("path")
-  csv_df2.show(5, False)
-  display(csv_df2)
-  csv_df2.printSchema()
+  player_df = spark.read.format("csv").load('gs://dataproc-staging-us-east1-548550014762-rie5an4z/notebooks/jupyter/player.csv')
+  player_df.show(5, False)
+  display(player_df)
+  player_df.printSchema()
   
   # Infer Schema
-  posts_headersDF = spark.read.option("inferSchema", "true").option('header', True).csv('/user/cloudera/stackexchange/posts_all_csv_with_header')
-  posts_headersDF.printSchema()
-  posts_headersDF.show(5)
+  player_headersdF = spark.read.option("inferSchema", "true").option('header', True).csv('/user/cloudera/stackexchange/posts_all_csv_with_header')
+  player_headersdF.printSchema()
+  player_headersdF.show(5)
 
- 
 
-  # Correct
-  postsSchema = \
+  # Best practice it is explicitly define the schema
+  playerSchema = \
     StructType([
-                StructField("Id", IntegerType()),
-                StructField("PostTypeId", IntegerType()),
-                StructField("AcceptedAnswerId", IntegerType()),
-                StructField("CreationDate", TimestampType()),
-                StructField("Score", IntegerType()),
-                StructField("ViewCount", IntegerType()),
-                StructField("OwnerUserId", IntegerType()),
-                StructField("LastEditorUserId", IntegerType()),
-                StructField("LastEditDate", TimestampType()),
-                StructField("Title", StringType()),
-                StructField("LastActivityDate", TimestampType()),              
-                StructField("Tags", StringType()),
-                StructField("AnswerCount", IntegerType()),
-                StructField("CommentCount", IntegerType()),
-                StructField("FavoriteCount", IntegerType())])
+                StructField("id", IntegerType()),
+                StructField("player_api_id", IntegerType()),
+                StructField("player_name", StringType()),
+                StructField("player_fifa_api_id", IntegerType()),
+                StructField("birthday", TimestampType()),              
+                StructField("height", FloatType()),
+                StructField("weight", FloatType())
+              ])
 
-  postsDF = spark.read.schema(postsSchema).csv('/user/cloudera/stackexchange/posts_all_csv')
-  postsDF.printSchema()
-  postsDF.schema
-  postsDF.dtypes
-  postsDF.columns
+  player_schemadf = spark.read.schema(postsSchema).csv('/user/cloudera/stackexchange/posts_all_csv')
+  player_schemadf.printSchema()
+  player_schemadf.schema
+  player_schemadf.dtypes
+  player_schemadf.columns
 
-    posts_no_schemaTxtDF.show(5, truncate=False)
-    posts_no_schemaTxtDF.show(100, truncate=False)
-  
+
 
 if __name__ == "__main__":
   spark = SparkSession.builder.appName("Simple with Session").getOrCreate()
