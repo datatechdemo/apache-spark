@@ -1,6 +1,6 @@
 
 """
-A simple application shows how to load(or read) data into spark dataframe
+A simple application shows how to work with spark dataframe
 Run with spark2-submit simple_with_session.py
 Author- Andy
 """
