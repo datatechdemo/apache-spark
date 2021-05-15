@@ -7,7 +7,8 @@ Author- Andy
 from pyspark.sql import SparkSession
 from pyspark.sql.types import *
 
-def readdata:
+
+def readdata():
   # Create a dataframe manually, from a list
   df = spark.createDataFrame([(1,'Andy'),(2,'mandy'),(3,'sandy')])
   print(type(df))
@@ -55,7 +56,11 @@ def readdata:
 
  
 if __name__ == "__main__":
-  spark = SparkSession.builder.appName("Simple with Session").getOrCreate()
+  spark = SparkSession \
+    .builder \
+    .appName("Analyzing soccer players") \
+    .getOrCreate()
+  
   def readdata(spark)
   
   spark.stop()
