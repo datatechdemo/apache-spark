@@ -1,4 +1,3 @@
-
 """
 Description about the program
 Author - Anand 
@@ -8,7 +7,7 @@ Author - Anand
 
 #Import libraries
 from pyspark.sql import SparkSession
-from pyspark.sql.pandas.utils import require_minimum_pandas_version, require_minimum_pyarrow_version
+#Other libraries
 
 def function_example(spark):
   # +--------+---+---+---+
