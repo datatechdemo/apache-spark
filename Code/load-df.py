@@ -6,7 +6,7 @@ Author- Andy
 from pyspark.sql import SparkSession
 from pyspark.sql.types import *
 
-def readdata:
+def readdata(spark):
   # Create a dataframe manually, from a list
   df = spark.createDataFrame([(1,'Andy'),(2,'mandy'),(3,'sandy')])
   print(type(df))
@@ -16,13 +16,11 @@ def readdata:
   # Loading DataFrames: CSV method 1 using spark.read.csv('path')
   player_df =spark.read.option('header', True).csv('gs://dataproc-staging-us-east1-548550014762-rie5an4z/notebooks/jupyter/player.csv')
   player_df.show(5, False)
-  display(player_df)
   player_df.printSchema()
   
   # Loading DataFrames: CSV method 2 using spark.read.format('csv').load('path')
   player_df = spark.read.format("csv").load('gs://dataproc-staging-us-east1-548550014762-rie5an4z/notebooks/jupyter/player.csv')
   player_df.show(5, False)
-  display(player_df)
   player_df.printSchema()
 
   # Loading JSON
@@ -33,7 +31,7 @@ def readdata:
   # In the same way we can upload other formats such as parquet etc 
   
   # Infer Schema
-  player_headersdF = spark.read.option("inferSchema", "true").option('header', True).csv('/user/cloudera/stackexchange/posts_all_csv_with_header')
+  player_headersdF = spark.read.option("inferSchema", "true").option('header', True).csv('gs://dataproc-staging-us-east1-548550014762-rie5an4z/notebooks/jupyter/player.csv')
   player_headersdF.printSchema()
   player_headersdF.show(5)
 
@@ -50,7 +48,7 @@ def readdata:
                 StructField("weight", FloatType())
               ])
 
-  player_schemadf = spark.read.schema(postsSchema).csv('/user/cloudera/stackexchange/posts_all_csv')
+  player_schemadf = spark.read.schema(playerSchema).csv('gs://dataproc-staging-us-east1-548550014762-rie5an4z/notebooks/jupyter/player.csv')
   player_schemadf.printSchema()
   player_schemadf.schema
   player_schemadf.dtypes
@@ -60,6 +58,6 @@ def readdata:
 
 if __name__ == "__main__":
   spark = SparkSession.builder.appName("Simple with Session").getOrCreate()
-  def readdata(spark)
+  readdata(spark)
   
   spark.stop()
