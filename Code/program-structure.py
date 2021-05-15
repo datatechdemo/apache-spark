@@ -1,6 +1,6 @@
 """
 Description about the program
-Author - Anand 
+Author - Andy 
 """
 
 # A good programmer alway put comments 
