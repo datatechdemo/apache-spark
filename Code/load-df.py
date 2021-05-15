@@ -25,6 +25,16 @@ def readdata:
   display(player_df)
   player_df.printSchema()
   
+   # Loading Parquet
+  comments_parquetdf = spark.read.parquet('/user/cloudera/stackexchange/comments_parquet')
+  comments_parquetdF.printSchema()
+  comments_parquetdf.show()
+
+  # Loading JSON
+  people_jsondf = spark.read.json('/user/cloudera/stackexchange/tags_json')
+  people_jsondf.printSchema()
+  people_jsondf.show(5)
+  
   # Infer Schema
   player_headersdF = spark.read.option("inferSchema", "true").option('header', True).csv('/user/cloudera/stackexchange/posts_all_csv_with_header')
   player_headersdF.printSchema()
