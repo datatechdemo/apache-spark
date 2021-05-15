@@ -24,16 +24,13 @@ def readdata:
   player_df.show(5, False)
   display(player_df)
   player_df.printSchema()
-  
-   # Loading Parquet
-  comments_parquetdf = spark.read.parquet('/user/cloudera/stackexchange/comments_parquet')
-  comments_parquetdF.printSchema()
-  comments_parquetdf.show()
 
   # Loading JSON
-  people_jsondf = spark.read.json('/user/cloudera/stackexchange/tags_json')
+  people_jsondf = spark.read.json('gs://dataproc-staging-us-east1-548550014762-rie5an4z/notebooks/jupyter/people.json')
   people_jsondf.printSchema()
   people_jsondf.show(5)
+  
+  # In the same way we can upload other formats such as parquet etc 
   
   # Infer Schema
   player_headersdF = spark.read.option("inferSchema", "true").option('header', True).csv('/user/cloudera/stackexchange/posts_all_csv_with_header')
