@@ -1,6 +1,6 @@
 """
-Shows a simple application being executed in spark without a session
-Run with spark2-submit simple_with_session.py
+Shows a simple application being executed in spark with a session
+Run with spark2-submit or Juypter notebook
 Author- Andy
 """
 from pyspark.sql import SparkSession
