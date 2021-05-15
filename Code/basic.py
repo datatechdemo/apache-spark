@@ -9,19 +9,17 @@ from pyspark.sql.types import *
 
 
 def readdata():
-  # Create a dataframe manually, from a list
-  df = spark.createDataFrame([(1,'Andy'),(2,'mandy'),(3,'sandy')])
-  print(type(df))
-  df.show()
-  df.printSchema()
-  
-  # Working with data frame 
-  # Select columns And we can return the values in those columns
-  postsDF.select(postsDF.Title).show(1)
-  postsDF.select(postsDF['Title']).show(1)
-  postsDF.select('Title').show()
+  # Loading DataFrames: CSV method 1 using spark.read.csv('path')
+  player_df =spark.read.option('header', True).csv('gs://dataproc-staging-us-east1-548550014762-rie5an4z/notebooks/jupyter/player.csv')
+  player_df.show(5, False)
+  display(player_df)
+  player_df.printSchema()
   
   # Selecting multiple columns
+  df = player_df.select('player_api_id')
+  df.show(5,False)
+  df = 
+  
   
   # Add and update columns
   
