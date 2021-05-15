@@ -5,9 +5,10 @@ Auther- Andy
 """
 from pyspark.sql import SparkSession
 
-spark = SparkSession.builder.appName("Simple with Session").getOrCreate()
+if __name__ == "__main__":
+  spark = SparkSession.builder.appName("Simple with Session").getOrCreate()
 
-print "*** Testing simple_with_session.py ***"
-print "*** Application name: " + spark.sparkContext.appName + " / Version: " + spark.version + " ***"
+  print "*** Testing simple_with_session.py ***"
+  print "*** Application name: " + spark.sparkContext.appName + " / Version: " + spark.version + " ***"
 
-spark.stop()
+  spark.stop()
