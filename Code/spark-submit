@@ -1,4 +1,4 @@
 gcloud dataproc jobs submit pyspark \
-    gs://dataproc-staging-us-east1-548550014762-rie5an4z/notebooks/jupyter/demo-01-console_sink.py \
+    gs://dataproc-staging-us-east1-548550014762-rie5an4z/notebooks/jupyter/base.py \
     --cluster=cluster-datademo  \
     --region=us-east1
